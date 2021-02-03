@@ -47,38 +47,6 @@ public class mostrar extends AppCompatActivity {
 
         viewModelActivity.mostrarCoche(this);
 
-        /*String url="https://informatica.ieszaidinvergeles.org:9034/laravel/cocheventa/public/api/";
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        cocheI = retrofit.create(CocheInterface.class);
-
-        Call<ArrayList<Coche>> request = cocheI.getCoche();
-
-        request.enqueue(new Callback<ArrayList<Coche>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Coche>> call, Response<ArrayList<Coche>> response) {
-                cochelista = response.body();
-
-                rvcoches = findViewById(R.id.rvCoche);
-                rvcoches.setHasFixedSize(true);
-
-                adapter = new CocheRecyclerAdapter(new CocheRecyclerAdapter.CocheDiff());
-                adapter.submitList(cochelista);
-                
-                rvcoches.setLayoutManager(new LinearLayoutManager(getParent()));
-                rvcoches.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Coche>> call, Throwable t) {
-                Log.v("XYZ", t.getMessage());
-            }
-        });*/
 
         btvolver = findViewById(R.id.btvolverm);
 
