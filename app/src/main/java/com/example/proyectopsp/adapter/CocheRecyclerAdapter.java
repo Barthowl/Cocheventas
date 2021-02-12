@@ -1,7 +1,5 @@
 package com.example.proyectopsp.adapter;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,12 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import com.example.proyectopsp.MainActivity;
 import com.example.proyectopsp.model.room.Coche;
-import com.example.proyectopsp.model.room.mostrar;
+import com.example.proyectopsp.model.room.Mostrar;
 
 public class CocheRecyclerAdapter extends ListAdapter<Coche, CocheViewHolder> {
-    mostrar m;
+    Mostrar m;
     public CocheRecyclerAdapter( @NonNull DiffUtil.ItemCallback<Coche> diffCallback) {
         super(diffCallback);
     }
@@ -35,7 +32,7 @@ public class CocheRecyclerAdapter extends ListAdapter<Coche, CocheViewHolder> {
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m = (mostrar) view.getContext();
+                m = (Mostrar) view.getContext();
                 m.irItem(current);
             }
         });

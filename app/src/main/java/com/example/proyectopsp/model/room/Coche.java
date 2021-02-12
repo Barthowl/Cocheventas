@@ -77,4 +77,14 @@ public class Coche {
     public String toString() {
         return  marca + ' ' + modelo;
     }
+
+    public String toString2() {
+        return "matricula='" + matricula + '\'' +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", color='" + color + '\'' +
+                ", foto='" + foto + '\'' +
+                ", edad=" + edad +
+                ", id=" + id;
+    }
 }

@@ -3,6 +3,7 @@ package com.example.proyectopsp.model.room;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,17 +16,14 @@ import com.example.proyectopsp.MainActivity;
 import com.example.proyectopsp.R;
 import com.example.proyectopsp.viewmodel.ViewModelActivity;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class edit extends AppCompatActivity {
+public class Edit extends AppCompatActivity {
     Button btvolver, bteditar;
-    EditText etid, etmatricula, etmarca, etmodelo, etcolor,etfoto,etedad;
+    EditText etmatricula, etmarca, etmodelo, etcolor,etfoto,etedad;
     CocheInterface cocheI;
     ViewModelActivity viewModelActivity;
+    long id;
+    String foto,matricula,marca,modelo,color;
+    int edad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,8 @@ public class edit extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
         viewModelActivity = new ViewModelProvider(this).get(ViewModelActivity.class);
 
-        etid = findViewById(R.id.etid2);
+
+
         etmatricula = findViewById(R.id.etmatricula2);
         etmarca = findViewById(R.id.etmarca2);
         etmodelo = findViewById(R.id.etmodelo2);
@@ -44,10 +43,28 @@ public class edit extends AppCompatActivity {
         btvolver = findViewById(R.id.btvolverf2);
         bteditar = findViewById(R.id.bteditarf);
 
+        Intent intent = getIntent();
+        foto = intent.getStringExtra("imagen");
+        matricula = intent.getStringExtra("matricula");
+        marca = intent.getStringExtra("marca");
+        modelo = intent.getStringExtra("modelo");
+        color = intent.getStringExtra("color");
+        edad = intent.getIntExtra("edad",0);
+        id = intent.getLongExtra("id",0);
+
+
+
+        etmatricula.setText(matricula);
+        etmarca.setText(marca);
+        etmodelo.setText(modelo);
+        etcolor.setText(color);
+        etedad.setText(String.valueOf(edad));
+        etfoto.setText(foto);
+
         btvolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(edit.this, MainActivity.class);
+                Intent intent = new Intent(Edit.this, Mostrar.class);
                 startActivity(intent);
             }
         });
@@ -59,43 +76,37 @@ public class edit extends AppCompatActivity {
                 int edad;
 
                 Coche coche = new Coche();
+                coche.setId(id);
 
-                    // control de errores
-                if(etid.getText().toString().isEmpty()){
-                    etid.setError("Introduzca la id que va a editar");
-                }
-                if(!etmatricula.getText().toString().isEmpty() && !etid.getText().toString().isEmpty()){
+                if(!etmatricula.getText().toString().isEmpty()){
                     matricula = etmatricula.getText().toString();
                     coche.setMatricula(matricula);
                 }
-                if(!etmarca.getText().toString().isEmpty() && !etid.getText().toString().isEmpty()){
+                if(!etmarca.getText().toString().isEmpty()){
                     marca = etmarca.getText().toString();
                     coche.setMarca(marca);
                 }
-                if(!etmodelo.getText().toString().isEmpty() && !etid.getText().toString().isEmpty()){
+                if(!etmodelo.getText().toString().isEmpty()){
                     modelo = etmodelo.getText().toString();
                     coche.setModelo(modelo);
                 }
-                if(!etcolor.getText().toString().isEmpty() && !etid.getText().toString().isEmpty()){
+                if(!etcolor.getText().toString().isEmpty()){
                     color = etcolor.getText().toString();
                     coche.setColor(color);
                 }
-                if(!etfoto.getText().toString().isEmpty() && !etid.getText().toString().isEmpty()){
+                if(!etfoto.getText().toString().isEmpty()){
                     foto = etfoto.getText().toString();
                     coche.setFoto(foto);
                 }
-                if(!etedad.getText().toString().isEmpty() && !etid.getText().toString().isEmpty()){
+                if(!etedad.getText().toString().isEmpty()){
                     edad = Integer.valueOf(etedad.getText().toString());
                     coche.setEdad(edad);
                 }
-                if(!etid.getText().toString().isEmpty()){
-                    int id = Integer.valueOf(etid.getText().toString());
-
                     viewModelActivity.editarCoche(id,coche);
-
-                    Intent intent = new Intent(edit.this, MainActivity.class);
+                    Toast.makeText(getApplicationContext(),"Coche editado correctamente",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Edit.this, Mostrar.class);
                     startActivity(intent);
-                }
+
             }
         });
     }

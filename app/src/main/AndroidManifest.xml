@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoPSP">
-        <activity android:name=".model.room.item_coche"></activity>
-        <activity android:name=".model.room.mostrar" />
-        <activity android:name=".model.room.remove" />
-        <activity android:name=".model.room.edit" />
-        <activity android:name=".model.room.add" />
+        <activity android:name=".model.room.MostrarVentas"></activity>
+        <activity android:name=".model.room.Item_coche" />
+        <activity android:name=".model.room.Mostrar" />
+        <activity android:name=".model.room.Edit" />
+        <activity android:name=".model.room.Add" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

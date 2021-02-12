@@ -1,24 +1,19 @@
 package com.example.proyectopsp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.proyectopsp.adapter.CocheRecyclerAdapter;
-import com.example.proyectopsp.model.room.Coche;
-import com.example.proyectopsp.model.room.add;
-import com.example.proyectopsp.model.room.edit;
-import com.example.proyectopsp.model.room.mostrar;
-import com.example.proyectopsp.model.room.remove;
-
-import java.util.List;
+import com.example.proyectopsp.model.room.Add;
+import com.example.proyectopsp.model.room.Edit;
+import com.example.proyectopsp.model.room.Mostrar;
+import com.example.proyectopsp.model.room.MostrarVentas;
 
 public class MainActivity extends AppCompatActivity {
-    Button btadd,btedit,btrem,btmostrar;
+    Button btadd,btventas,btmostrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,30 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         btadd = findViewById(R.id.btañadir);
-        btedit = findViewById(R.id.bteditar);
-        btrem = findViewById(R.id.bteliminar);
+
         btmostrar = findViewById(R.id.btmostrar);
+
+        btventas = findViewById(R.id.btvender);
 
         btadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, add.class);
-                startActivity(intent);
-            }
-        });
-
-        btedit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, edit.class);
-                startActivity(intent);
-            }
-        });
-
-        btrem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, remove.class);
+                Intent intent = new Intent(MainActivity.this, Add.class);
                 startActivity(intent);
             }
         });
@@ -58,8 +38,15 @@ public class MainActivity extends AppCompatActivity {
         btmostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Mostrar.class);
+                startActivity(intent);
+            }
+        });
 
-                Intent intent = new Intent(MainActivity.this, mostrar.class);
+        btventas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MostrarVentas.class);
                 startActivity(intent);
             }
         });
